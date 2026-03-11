@@ -25,7 +25,7 @@ jobs:
   job-2:
     name: download-artifac
     runs-on: ubuntu-latest
-    depends-on: job-1 
+    needs: job-1 
     steps:
       - name: listando conteudo antes do download artifacs
         run: ls -lha
