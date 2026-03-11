@@ -10,19 +10,39 @@ jobs:
     name: upload-artifact
     runs-on: ubuntu-latest
     steps:
-      - name: Exibir versão do sistema operacional
+      - name: exibir versão do sistema operacional
         run: cat /etc/os-release  
 
-      - name: Criando arquivo message.txt
-        run: echo "Estou realizando o treinamento "Github Actions" da LinuxTips" > message.txt
+      - name: criando arquivo message.txt
+        run: echo "Estou realizando o treinamento "Github Actions" da LinuxTips" > ${{ github.workspace }}/message.txt
+      
+      - name: upload message file 
+        uses: actions/upload-artifact@v4
+        with:
+          name: messages-upload
+          path: ${{ gihub.workspace }}/message.txt
 
   job-2:
     name: download-artifac
     runs-on: ubuntu-latest
     steps:
-      - name: Listando conteudo do diretório corrente
+      - name: listando conteudo antes do download artifacs
         run: ls -lha
-      
-      - name: Exibindo conteúdo do arquivo message.txt
+
+      - name: download message file 
+        uses: actions/download-artifact@v4
+        with:
+          name: messages-upload
+          path: messages
+
+      - name: listando conteudo depois do download artifacs
+        run: ls -lha && ls -lha ./messages
+
+      - name: recuperando arquivo e removendo repositorio
+        run: mv ./messages/message.txt ./ && rm -rf /messages
+
+      - name: listando repositório após recuperação do arquivo
+        run: ls -lha
+
+      - name: exibindo conteúdo do arquivo message
         run: cat ./message.txt
-    
