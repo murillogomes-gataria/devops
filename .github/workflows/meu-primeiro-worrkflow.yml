@@ -1,9 +1,7 @@
 name: meu primeiro wokflow
 
 on:
-  push:
-    branch:
-      - main
+  workflow_dispatch
 
 jobs:
   first-job:
