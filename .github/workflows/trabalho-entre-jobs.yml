@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: messages-upload
-          path: ${{ gihub.workspace }}/message.txt
+          path: ${{ github.workspace }}/message.txt
 
   job-2:
     name: download-artifac
