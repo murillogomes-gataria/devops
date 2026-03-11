@@ -1,0 +1,24 @@
+name: trabalho entre steps 
+
+on:
+  push:
+    branch:
+      - main
+
+jobs:
+  worrk-cross-steps:
+    name: work-cross-steps
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Exibir versão do sistema operacional
+        run: cat /etc/os-release  
+
+      - name: Criando arquivo message.txt
+        run: echo "Estou realizando o treinamento "Github Actions" da LinuxTips" > message.txt
+
+      - name: Exibindo path e raiz do prrojeto 
+        run: pwd && ls -lha 
+
+      - name: Exibindo conteúdo do arquivo message.txt
+        run: cat ./message.txt
