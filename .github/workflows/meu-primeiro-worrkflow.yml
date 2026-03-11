@@ -1,0 +1,18 @@
+name: meu primeiro wokflow
+
+on:
+  push:
+    branch:
+      - main
+
+jobs:
+  first-job:
+    name: display-message
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Exibir versão do sistema operacional
+        run: cat /etc/os-release  
+
+      - name: Imprimir mensagem na tela
+        run: echo "Estou realizando o treinamento "Github Actions" da LinuxTips"
