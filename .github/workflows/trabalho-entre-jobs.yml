@@ -1,0 +1,28 @@
+name: trabalho entre jobs
+
+on:
+  push:
+    branch:
+      - main
+
+jobs:
+  jobs-1:
+    name: upload-artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Exibir versão do sistema operacional
+        run: cat /etc/os-release  
+
+      - name: Criando arquivo message.txt
+        run: echo "Estou realizando o treinamento "Github Actions" da LinuxTips" > message.txt
+
+  job-2:
+    name: download-artifac
+    runs-on: ubuntu-latest
+    steps:
+      - name: Listando conteudo do diretório corrente
+        run: ls -lha
+      
+      - name: Exibindo conteúdo do arquivo message.txt
+        run: cat ./message.txt
+    
