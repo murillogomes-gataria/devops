@@ -16,13 +16,13 @@ jobs:
     steps:
       - name: extraindo imagem do Docker registry
         run: |
-          docker image pull ${{ github.events.inputs.validDockerImages }}
+          docker image pull ${{ github.event.inputs.validDockerImages }}
 
       - name: validando imagem a ser analisada pelo scout
         run: |
-          docker image ls | grep ${{ github.events.inputs.validDockerImages }}
+          docker image ls | grep ${{ github.event.inputs.validDockerImages }}
 
-      - name: escaneando imagem ${{ github.events.inputs.validDockerImages }}
+      - name: escaneando imagem ${{ github.event.inputs.validDockerImages }}
         uses: docker/scout-action@v1
         with:
           command: quickview,cves,recommendations,sbom
