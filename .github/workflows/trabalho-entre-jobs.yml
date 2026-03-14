@@ -37,10 +37,10 @@ jobs:
           path: messages
 
       - name: listando conteudo depois do download artifacs
-        run: ls -lha && ls -lha /messages
+        run: ls -lha && ls -lha ./messages/
 
       - name: recuperando arquivo e removendo repositorio
-        run: cp messages/message.txt . && rm -rf /messages
+        run: cp messages/message.txt . && rm -rf messages
 
       - name: listando repositório após recuperação do arquivo
         run: ls -lha
