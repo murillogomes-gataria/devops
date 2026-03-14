@@ -28,3 +28,5 @@ jobs:
         with:
           command: quickview,cves,recommendations,sbom
           image: ${{ github.event.inputs.validDockerImages }}
+          dockerhub-user: ${{ vars.DOCKERHUB_USER }}
+          dockerhub-password: ${{ secrets.DOCKERHUB_PASSWORD }}
