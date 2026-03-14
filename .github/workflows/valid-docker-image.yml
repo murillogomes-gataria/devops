@@ -20,10 +20,11 @@ jobs:
 
       - name: validando imagem a ser analisada pelo scout
         run: |
+          DOCKER_IMAGE=$(echo "${{ github.event.inputs.validDockerImages }}" | cut -d ':' -f 1)
           docker image ls | grep ${{ github.event.inputs.validDockerImages }}
 
       - name: escaneando imagem ${{ github.event.inputs.validDockerImages }}
         uses: docker/scout-action@v1
         with:
           command: quickview,cves,recommendations,sbom
-          image: ${{ github.events.inputs.validDockerImages }}
+          image: ${{ github.event.inputs.validDockerImages }}
