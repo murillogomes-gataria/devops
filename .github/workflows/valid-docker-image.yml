@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       validDockerImages:
-        description: Valid Docker Images
-        required: false
+        description: Insert Docker Image
+        required: true
         default: nginx:latest
         type: string
 
@@ -14,16 +14,16 @@ jobs:
     name: valid Docker Image
     runs-on: ubuntu-latest
     steps:
-      - name: extraindo imagem do Docker registry
+      - name: Extraindo Imagem do Docker Registry
         run: |
           docker image pull ${{ github.event.inputs.validDockerImages }}
 
-      - name: validando imagem a ser analisada pelo scout
+      - name: Validando Imagem a Ser Analisada pelo Scout
         run: |
           DOCKER_IMAGE=$(echo "${{ github.event.inputs.validDockerImages }}" | cut -d ':' -f 1)
           docker image ls | grep $DOCKER_IMAGE
 
-      - name: escaneando imagem ${{ github.event.inputs.validDockerImages }}
+      - name: Escaneando Imagem ${{ github.event.inputs.validDockerImages }}
         uses: docker/scout-action@v1
         with:
           command: quickview,cves,recommendations,sbom
