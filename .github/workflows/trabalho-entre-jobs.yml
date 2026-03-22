@@ -1,9 +1,7 @@
 name: trabalho entre jobs
 
 on:
-  push:
-    branch:
-      - main
+  workflow_dispatch
 
 jobs:
   job-1:
